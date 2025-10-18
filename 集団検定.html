@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>集検 | 東京集団検定株式会社</title>
+  <link rel="icon" href="favicon.png" sizes="any">
+
+
+  <style>
+    :root {
+      --accent: #0b6efd;
+      --accent2: #16588e;
+      --bg: #f7f9fc;
+      --card: #ffffff;
+      --muted: #6b7280;
+      --radius: 12px;
+      --shadow: 0 6px 20px rgba(11, 110, 253, 0.06);
+      font-family: "Segoe UI", "Hiragino Kaku Gothic ProN", sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: #0f1724;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* ================= HEADER ================= */
+    header {
+      background: linear-gradient(135deg, rgb(0, 85, 203), rgba(22,88,142,0.06));
+      padding: 20px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      backdrop-filter: blur(8px);
+      position: relative;
+      z-index: 20;
+      box-shadow: var(--shadow);
+         box-shadow: 0 6px 20px rgba(0, 0, 0, 0.205); /* ← これを追加！ */
+    }
+
+    header img {
+      height: 30px;
+    }
+
+    
+    .header-right a {
+      color: var(--accent2);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      position: relative;
+    }
+
+    .header-right a::after {
+      content: "";
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--accent2);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .header-right a:hover::after {
+      opacity: 1;
+    }
+
+    /* ================= SLIDER ================= */
+    .slider {
+      position: relative;
+      width: 100%;
+      height: 70vh;
+      overflow: hidden;
+      background-color: #dfe7f3;
+      border-bottom: 1px solid rgba(11,110,253,0.1);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.205); /* ← これを追加！ */
+    }
+
+    /* ================= BUTTONS ================= */
+
+    /* ================= SIMPLE BUTTON ================= */
+.card .btn2 {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 7px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #0b4a8b;
+  text-decoration: none;
+  border: 1px solid rgba(11, 110, 253, 0.3);
+  border-radius: 6px;
+  background-color: transparent;
+  transition: all 0.25s ease;
+}
+
+.card .btn:hover {
+  background-color: rgba(11, 110, 253, 0.08);
+  border-color: rgba(11, 110, 253, 0.5);
+  color: #084d9a;
+}
+
+.card .btn {
+  display: inline-block;
+  margin-top: 8px;
+  background: linear-gradient(180deg, #0b6efd, #0a58d6);
+  color: #fff;
+  text-decoration: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 14px rgba(11, 110, 253, 0.18);
+}
+
+.card .btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(11, 110, 253, 0.28);
+  background: linear-gradient(180deg, #0a58d6, #094eb9);
+}
+
+
+
+    .slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transition: opacity 1.5s ease-in-out;
+    }
+
+
+
+    .slide.active {
+      opacity: 1;
+      z-index: 1;
+    }
+
+    /* Dots */
+    .dots {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 10px;
+      z-index: 10;
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background-color: rgba(11, 110, 253, 0.3);
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.3s;
+    }
+
+    .dot.active {
+      background-color: var(--accent);
+      transform: scale(1.2);
+    }
+
+    /* ================= CONTENT ================= */
+    .wrap {
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+    
+    .summary2 {
+      margin-top: 60px;
+      background: #eaf2ff;
+      border-radius: 12px;
+      padding: 40px 30px;
+      box-shadow: 0 4px 20px rgba(11,110,253,0.08);
+    }
+
+    .hero {
+      background: linear-gradient(90deg, rgba(11,110,253,0.06), rgba(22,88,142,0.03));
+      border-radius: var(--radius);
+      padding: 28px;
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      box-shadow: var(--shadow);
+    }
+
+    .logo {
+      width: 72px;
+      height: 72px;
+      background: linear-gradient(135deg, #0b6efd, #8f10b9);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 700;
+      font-size: 20px;
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: 20px;
+      color: #042a54;
+    }
+
+    .hero p {
+      margin: 6px 0 0 0;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    main.cards {
+      margin-top: 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 14px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+      color: #0f1724;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    
+    .card2 {
+      background: var(--card);
+      border-radius: 14px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+      color: #0f1724;
+      display: grid;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .card .title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      color: #042a54;
+      font-size: 16px;
+    }
+
+    .emoji {
+      font-size: 20px;
+      line-height: 1;
+    }
+
+    .lead {
+      color: var(--muted);
+      font-size: 14px;
+      margin: 0;
+    }
+
+    .features {
+      margin-top: 8px;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .chip {
+      background: linear-gradient(180deg, rgba(11, 110, 253, 0.06), rgba(11, 110, 253, 0.02));
+      color: var(--accent);
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 13px;
+    }
+
+    .full {
+      grid-column: 1 / -1;
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+      flex-wrap: wrap;
+    }
+
+    .summary {
+      flex: 1;
+      padding: 18px;
+      border-radius: 12px;
+      background: #fff;
+      box-shadow: var(--shadow);
+    }
+
+    .cta {
+      background: linear-gradient(180deg, #0b6efd, #0a58d6);
+      color: white;
+      padding: 18px;
+      border-radius: 12px;
+      width: 320px;
+      box-shadow: var(--shadow);
+    }
+
+    
+    .simple-btn {
+      display: inline-block;
+      padding: 10px 24px;
+      color: #0b4a8b;
+      border: 1px solid rgba(11,110,253,0.3);
+      border-radius: 8px;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      font-weight: 500;
+      background-color: transparent;
+    }
+
+    .cta .btn {
+      display: inline-block;
+      background: white;
+      color: var(--accent);
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-weight: 700;
+      text-decoration: none;
+      box-shadow: 0 6px 18px rgba(2, 6, 23, 0.06);
+      margin-right: 10px;
+    }
+
+    footer.note {
+      text-align: center;
+      color: var(--muted);
+      font-size: 13px;
+      margin: 40px 0;
+    }
+
+    /* Accordion */
+    .accordion {
+      margin-top: 12px;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid rgba(15, 23, 36, 0.04);
+    }
+
+    .acc-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 14px;
+      cursor: pointer;
+      background: #f7f9fc;
+    }
+    
+    /*大事*/
+     
+    .summary2 p {
+      font-size: 1rem;
+      line-height: 1.8;
+      margin-bottom: 25px;
+    }
+    .summary2 h3 {
+      font-size: 1.3rem;
+      color: #0b4a8b;
+      margin-bottom: 15px;
+    }
+
+    .acc-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+      padding: 0 14px;
+    }
+
+    .acc-body.open {
+      max-height: 200px;
+      padding: 12px 14px;
+    }
+    
+    .title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  color: #042a54;
+  font-size: 16px;
+}
+
+.icon {
+  width: 24px;      /* 画像サイズ */
+  height: 24px;
+  object-fit: contain;
+  flex-shrink: 0;   /* 画像が潰れないように */
+}
+
+    .support-section {
+      background-color: #f7f9fc;
+      padding: 80px 10%;
+      color: #0b2956;
+      text-align: center;
+      box-shadow: 0 -4px 20px rgba(11, 110, 253, 0.05);
+      margin-top: 80px;
+    }
+
+    .support-section h2 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #0b4a8b;
+      margin-bottom: 10px;
+    }
+
+    .support-section .intro {
+      font-size: 1rem;
+      color: #334;
+      margin-bottom: 50px;
+      line-height: 1.8;
+    }
+
+    .support-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 25px;
+      margin-bottom: 60px;
+    }
+
+    .support-card {
+      background: #fff;
+      border: 1px solid rgba(11,110,253,0.1);
+      border-radius: 10px;
+      padding: 25px;
+      box-shadow: 0 4px 15px rgba(11,110,253,0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      text-align: left;
+    }
+
+    .support-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 25px rgba(11,110,253,0.15);
+    }
+
+    .support-card h3 {
+      font-size: 1.1rem;
+      color: #0b4a8b;
+      margin-bottom: 10px;
+    }
+
+    .support-card p {
+      font-size: 0.95rem;
+      color: #333;
+      line-height: 1.7;
+    }
+
+            
+    .M1 {
+      color: #5d8fc1;
+      font-weight: bold;
+      text-align: center;
+      font-family: "Yu Gothic", sans-serif;
+    }
+
+
+    
+    
+
+  </style>
+</head>
+<body>
+
+  <!-- ================= HEADER ================= -->
+  <header>
+    <img src="TOKYO1.png" alt="ロゴマーク" />
+    <div class="header-right">
+      <a href="#">団体受付</a>
+      <span class="M1">|</span>
+      <a href="#">個人結果</a>
+      <span class="M1">|</span>
+      <a href="#">資料請求</a>
+      <span class="M1">|</span>
+      <a href="#">契約情報</a>
+    </div>
+  </header>
+
+  <!-- ================= SLIDER ================= -->
+  <div class="slider" id="slider">
+    <div class="slide active" style="background-image: url('images/画像a.jpg');"></div>
+    <div class="slide" style="background-image: url('images/画像b.jpg');"></div>
+    <div class="slide" style="background-image: url('images/画像f.jpg');"></div>
+    <div class="slide" style="background-image: url('images/画像d.jpg');"></div>
+
+    <div class="dots" id="dots">
+      <div class="dot active"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+    </div>
+  </div>
+  
+
+  <!-- ================= CONTENT ================= -->
+  <div class="wrap">
+    <section class="hero">
+      <div class="logo">検定</div>
+      <div>
+        <h1>未来につながる資格を、教育現場へ — 集団検定サービス</h1>
+        <p>学校・塾単位で実施する「集団受験」に特化。実施の手間を減らし、学力を「見える化」して教育成果に結びつけます。</p>
+      </div>
+    </section>
+
+    <main class="cards">
+      <!-- カード群 -->
+      <article class="card">
+        <div class="title"> <img src="icons/eiken.png" alt="英検アイコン" class="icon">英検（実用英語技能検定）</div>
+        <p class="lead">世界とつながる第一歩。入試・就職でも高く評価される英検。</p>
+        <a href="https://www.eiken.or.jp/" target="_blank" class="btn2">公式サイトへ</a>
+   
+        </article>
+
+      <article class="card">
+        <div class="title"><img src="icons/sugaku.png" alt="数学検定アイコン" class="icon"></span>数学検定（実用数学技能検定）</div>
+        <p class="lead">論理的思考力を“見える化”。学年・レベルを問わず挑戦できます。</p>
+        <a href="https://www.su-gaku.net/suken/" target="_blank" class="btn2">公式サイトへ</a>
+      </article>
+
+      <article class="card">
+        <div class="title"><img src="icons/nikken.png" alt="日本語検定アイコン" class="icon"></span>国語検定（日本語検定）</div>
+        <p class="lead">伝える力、感じ取る力を伸ばす。総合的な国語力を測定します。</p>
+        <a href="https://www.nihongokentei.jp/about/" target="_blank" class="btn2">公式サイトへ</a>
+      </article>
+
+      <article class="card">
+        <div class="title"><img src="icons/kanken.png" alt="漢字検定アイコン" class="icon"></span>漢字検定（日本漢字能力検定）</div>
+        <p class="lead">一文字があなたの印象を変える。正しい日本語力の基礎を評価。</p>
+        <a href="https://www.kanken.or.jp/kanken/" target="_blank" class="btn2">公式サイトへ</a>
+      </article>
+
+      <article class="card2">
+        <div class="title"><span class="emoji">🌏</span>言語別検定</div>
+        <p class="lead">中国語・韓国語・ドイツ語・フランス語などを含めた言語習得検定。</p>
+      
+      </article>
+
+            <article class="card2">
+        <div class="title"><span class="emoji">…</span>その他資格・技能検定</div>
+        <p class="lead">多彩な検定ラインナップで生徒のモチベーションを引き出します。</p>
+      
+      </article>
+      
+
+      <section class="full">
+        <div class="summary">
+          <h3>🧩 団体受験のメリット</h3>
+          <ul>
+            <li>学校や塾単位で一斉実施可能</li>
+            <li>成績データをまとめて分析・比較</li>
+            <li>受験費用の割引・柔軟スケジュール</li>
+            <li>学習意欲向上・教育成果の可視化</li>
+          </ul>
+        </div>
+        <div class="cta">
+          <h3>導入のご相談はこちら</h3>
+          <p>未来につながる資格を、あなたの教育現場へ。</p>
+          <a href="mailto:contact@example.com" class="btn">メールで相談</a>
+        </div>
+
+      
+      </section>
+    </main>
+  </div>
+
+
+
+  
+
+  <section class="support-section">
+    <h2>団体受験を、もっとスムーズに。もっと安心に。</h2>
+    <p class="intro">
+      学校・塾・企業の皆さまを徹底サポートします。<br>
+      団体受験の準備から当日の運営、結果分析までワンストップで対応。<br>
+      各検定協会との調整も一括でお任せください。
+    </p>
+
+    <div class="support-grid">
+      <div class="support-card">
+        <h3>🎯 団体割引制度</h3>
+        <p>まとめて受験するほど、お得に。団体単位でのお申し込みなら、受験料が割引に。<br>※検定種別・人数により割引率は異なります。</p>
+      </div>
+
+      <div class="support-card">
+        <h3>🏫 会場手配・運営サポート</h3>
+        <p>“会場探し”から“試験実施”までワンストップで。<br>自校の教室利用も、会場手配も柔軟に対応します。</p>
+      </div>
+
+      <div class="support-card">
+        <h3>📋 申込・名簿管理サポート</h3>
+        <p>受験者名簿の作成、申込管理、受験票配布まで一括で代行。<br>担当者様の負担を軽減します。</p>
+      </div>
+
+      <div class="support-card">
+        <h3>💬 事前説明・報告会支援</h3>
+        <p>オンライン説明会や検定後のスコア報告会など、導入から成果分析までを継続的にフォロー。</p>
+      </div>
+
+      <div class="support-card">
+        <h3>🧮 成績データ分析</h3>
+        <p>団体単位でのスコア分析・比較が可能。<br>学年別・クラス別の結果をグラフ化して教育改善に活かせます。</p>
+      </div>
+      
+      <div class="support-card">
+        <h3>🕶️ プライバシー保護</h3>
+        <p>特設サイトにて個人成績を確認。厳重な情報管理のもと、プライバシーの保護をします。<br>学年別・クラス別の結果をグラフ化して教育改善に活かせます。</p>
+      </div>
+    </div>
+
+    <div class="summary2">
+      <h3>🌟 すべての学びに、“挑戦する機会”を。</h3>
+      <p>
+        英検・数検・漢検・日本語検定など、幅広い資格試験を一括でサポート。<br>
+        団体受験の導入・運営・アフターフォローまで、ワンチームで支えます。<br>
+        学校・企業研修など、目的に合わせた最適なプランをご提案します。
+      </p>
+      <a href="#contact" class="simple-btn">ご相談はこちらから</a>
+    </div>
+  </section>
+
+  <footer class="note">
+    © 2025 東京集団検定株式会社 — 集団検定の導入支援
+  </footer>
+
+  <script>
+    // フェードスライダー
+    const slides = document.querySelectorAll('.slide');
+    const dots = document.querySelectorAll('.dot');
+    let index = 0;
+    const intervalTime = 4000;
+    let slideInterval;
+
+    function showSlide(i) {
+      slides.forEach((s, idx) => s.classList.toggle('active', idx === i));
+      dots.forEach((d, idx) => d.classList.toggle('active', idx === i));
+      index = i;
+    }
+
+    function nextSlide() {
+      showSlide((index + 1) % slides.length);
+    }
+
+    function startAutoSlide() {
+      slideInterval = setInterval(nextSlide, intervalTime);
+    }
+
+    dots.forEach((dot, i) => {
+      dot.addEventListener('click', () => {
+        clearInterval(slideInterval);
+        showSlide(i);
+        startAutoSlide();
+      });
+    });
+
+    startAutoSlide();
+
+    // アコーディオン
+    document.querySelectorAll('.acc-head').forEach(head => {
+      head.addEventListener('click', () => {
+        const body = head.nextElementSibling;
+        body.classList.toggle('open');
+      });
+    });
+  </script>
+</body>
+</html>
