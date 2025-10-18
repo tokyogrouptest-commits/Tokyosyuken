@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>集検 | 東京集団検定株式会社</title>
   <link rel="icon" href="favicon.png" sizes="any">
+  <link rel="icon" href="https://i.postimg.cc/Kzqpp2Yv/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="https://i.postimg.cc/Kzqpp2Yv/favicon.png" sizes="180x180">
+
 
 
   <style>
@@ -285,6 +288,58 @@
       font-size: 13px;
     }
 
+    /* 基本 */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+/* メニューボタン（スマホのみ表示） */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: 1px solid rgba(22,88,142,0.2);
+  border-radius: 6px;
+  padding: 8px 14px;
+  font-size: 15px;
+  cursor: pointer;
+  color: #16588e;
+}
+
+/* レスポンシブ切り替え */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  .header-right {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 10px;
+    background: #f8fafc;
+    border-radius: 8px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+  }
+
+  .header-right.active {
+    display: flex;
+  }
+
+  .header-right a {
+    padding: 12px 20px;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+  }
+
+  .header-right a:last-child {
+    border-bottom: none;
+  }
+}
+
+
     .full {
       grid-column: 1 / -1;
       display: flex;
@@ -474,18 +529,20 @@
 <body>
 
   <!-- ================= HEADER ================= -->
-  <header>
-    <img src="TOKYO1.png" alt="ロゴマーク" />
-    <div class="header-right">
-      <a href="#">団体受付</a>
-      <span class="M1">|</span>
-      <a href="#">個人結果</a>
-      <span class="M1">|</span>
-      <a href="#">資料請求</a>
-      <span class="M1">|</span>
-      <a href="#">契約情報</a>
-    </div>
-  </header>
+<header>
+  <img src="TOKYO1.png" alt="ロゴマーク" />
+
+  <!-- メニューボタン（モバイル表示用） -->
+  <button class="menu-toggle" id="menuToggle">☰ メニュー</button>
+
+  <!-- ナビゲーション -->
+  <nav class="header-right" id="navMenu">
+    <a href="#">ページ遷移1</a>
+    <a href="#">ページ遷移2</a>
+    <a href="#">ページ遷移3</a>
+  </nav>
+</header>
+
 
   <!-- ================= SLIDER ================= -->
   <div class="slider" id="slider">
@@ -640,6 +697,17 @@
     let index = 0;
     const intervalTime = 4000;
     let slideInterval;
+
+    // メニュー開閉制御
+    const menuToggle = document.getElementById('menuToggle');
+    const navMenu = document.getElementById('navMenu');
+
+    menuToggle.addEventListener('click', () => {
+    navMenu.classList.toggle('active');
+      });
+
+
+    
 
     function showSlide(i) {
       slides.forEach((s, idx) => s.classList.toggle('active', idx === i));
