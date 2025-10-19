@@ -74,15 +74,54 @@
     }
 
     /* ================= SLIDER ================= */
-    .slider {
-      position: relative;
-      width: 100%;
-      height: 70vh;
-      overflow: hidden;
-      background-color: #dfe7f3;
-      border-bottom: 1px solid rgba(11,110,253,0.1);
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.205); /* ← これを追加！ */
-    }
+.slider {
+  position: relative;
+  width: 100%;
+  height: 70vh; /* PC・タブレットの標準高さ */
+  overflow: hidden;
+  background-color: #dfe7f3;
+  border-bottom: 1px solid rgba(11,110,253,0.1);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.205);
+}
+
+/* スライド画像全体を自然に表示（中央寄せ＆縦横比維持） */
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;        /* 画像を全面に広げる（はみ出しあり） */
+  background-position: center;   /* 中心を基準に切り抜き */
+  background-repeat: no-repeat;
+  opacity: 0;
+  transition: opacity 1.5s ease-in-out;
+}
+
+/* 表示中スライド */
+.slide.active {
+  opacity: 1;
+  z-index: 1;
+}
+
+/* ====== スマホ対応（画面幅による高さ調整） ====== */
+@media (max-width: 1024px) {
+  .slider {
+    height: 55vh; /* タブレットでは少し低めに */
+  }
+}
+
+@media (max-width: 768px) {
+  .slider {
+    height: 30vh; /* スマホ横向き */
+  }
+}
+
+@media (max-width: 360px) {
+  .slider {
+    height: 28vh; /* スマホ縦向きで自然に */
+  }
+}
 
     /* ================= BUTTONS ================= */
 
@@ -129,24 +168,7 @@
 
 
 
-    .slide {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-size: cover;
-      background-position: center;
-      opacity: 0;
-      transition: opacity 1.5s ease-in-out;
-    }
 
-
-
-    .slide.active {
-      opacity: 1;
-      z-index: 1;
-    }
 
     /* Dots */
     .dots {
@@ -537,9 +559,13 @@ header {
 
   <!-- ナビゲーション -->
   <nav class="header-right" id="navMenu">
-    <a href="#">ページ遷移1</a>
-    <a href="#">ページ遷移2</a>
-    <a href="#">ページ遷移3</a>
+    <a href="#">統計情報 |</a>
+    
+    <a href="#">団体受付 |</a>
+    
+    <a href="#">個人成績 |</a>
+    
+    <a href="#">教育情報</a>
   </nav>
 </header>
 
@@ -698,13 +724,16 @@ header {
     const intervalTime = 4000;
     let slideInterval;
 
-    // メニュー開閉制御
-    const menuToggle = document.getElementById('menuToggle');
-    const navMenu = document.getElementById('navMenu');
+// メニュー開閉制御
+const menuToggle = document.getElementById('menuToggle');
+const navMenu = document.getElementById('navMenu');
 
-    menuToggle.addEventListener('click', () => {
-    navMenu.classList.toggle('active');
-      });
+menuToggle.addEventListener('click', () => {
+  navMenu.classList.toggle('active');
+});
+
+
+
 
 
     
