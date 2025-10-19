@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ロゴマークページ</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", sans-serif;
+      background-color: #e9edf1;
+    }
+
+    /* ヘッダー */
+    header {
+      background-color: #16588e;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 10px;
+      font-size: 14px;
+    }
+
+    .logout {
+      color: white;
+      text-decoration: none;
+      background-color: #0f4370;
+      padding: 6px 14px;
+      border-radius: 4px;
+      transition: background-color 0.3s;
+      font-weight: bold;
+    }
+
+    .logout:hover {
+      background-color: #0c3558;
+    }
+
+    .top-text {
+      margin: 30px 70px;
+      font-size: 16px;
+    }
+
+    .M1 {
+      color: #434343;
+      font-weight: bold;
+      text-align: center;
+      font-family: "Yu Gothic", sans-serif;
+    }
+
+        .M2 {
+      color: #000000;
+      font-weight: bold;
+      text-align: center;
+      font-family: "Yu Gothic", sans-serif;
+      font-size: 30px;
+    }
+
+    /* ✅ テーブルを包むボックスに角丸を適用 */
+    .table-wrapper {
+      margin: 50px auto;
+      width: 80%;
+      border-radius: 5px;
+      overflow-x: auto; /* スマホで横スクロールを許可 */
+      -webkit-overflow-scrolling: touch;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      background-color: white;
+      border: 1px solid #bfc4c9;
+    }
+            footer.note {
+      text-align: center;
+      color: var(--muted);
+      font-size: 10px;
+      margin: 0px 0;
+      padding-bottom: 10px;
+      color: #8aaccd;
+     
+    }
+
+    /* ✅ テーブルの外枠を消して、内側の罫線だけにする */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      border: none;
+      min-width: 400px; /* スマホで崩れないように最小幅設定 */
+    }
+
+
+    td {
+      border-bottom: 1px solid #bfc4c9;
+      border-right: 1px solid #bfc4c9;
+      padding: 20px;
+      text-align: left;
+      vertical-align: top;
+      font-size: 15px;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    td:last-child {
+      border-right: none;
+    }
+
+    /* ✅ スマホ用レスポンシブ調整 */
+    @media screen and (max-width: 768px) {
+      header {
+        font-size: 12px;
+        padding: 8px;
+      }
+
+      .logout {
+        padding: 5px 10px;
+        font-size: 12px;
+      }
+
+      .top-text {
+        margin: 20px 20px;
+        font-size: 14px;
+      }
+
+      .table-wrapper {
+        width: 95%;
+        margin: 20px auto;
+      }
+
+      td {
+        padding: 12px 10px;
+        font-size: 13px;
+      }
+
+      table {
+        min-width: 320px; /* 横スクロールが自然になるよう調整 */
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <img src="TOKYO1.png" alt="ロゴマーク" style="height:25px;">
+    <a href="index.html" class="logout">終了</a>
+  </header>
+
+  <div class="top-text">
+    <span class="M2">荻原康輔</span> <span class="M2">：</span><span class="M2"style="color: rgb(38, 207, 0);">一次試験合格</span>
+    <h5 >個人コード：SAPG36 千葉英和高校(FG365) 2年5組4番</h5>
+  </div>
+
+  <!-- ✅ 角丸付きのテーブルラッパー -->
+  <div class="table-wrapper">
+    <table>
+      <tr>
+        <td></td>
+        <td class="M1">Reading</td>
+        <td class="M1">Writing</td>
+        <td class="M1">Listening</td>
+      </tr>
+      <tr>
+        <td class="M1">英検CSEスコア</td>
+        <td class="M1">507</td>
+        <td class="M1">549</td>
+        <td class="M1">487</td>
+      </tr>
+      <tr>
+        <td class="M1">CEFRレベル</td>
+        <td class="M1">A2</td>
+        <td class="M1">B1</td>
+        <td class="M1">A2</td>
+      </tr>
+    </table>
+  </div>
+
+    <h5 class="top-text" style="font-size: 12px;">二次試験受験会場：市川・船橋・習志野※</h5>
+
+      <footer class="note" role="contentinfo">
+    © TOKYOSYUKEN 2025
+  </footer>
+
+</body>
+</html>
