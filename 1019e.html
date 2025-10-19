@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>フォームチェック付きページ</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+      background-color: #e9eef3;
+    }
+
+    /* ===== ヘッダー ===== */
+    header {
+      background-color: #0a4d8c;
+      padding: 10px 20px;
+    }
+
+    header a {
+      color: #fff;
+      text-decoration: underline;
+      font-weight: bold;
+    }
+
+    /* ===== メイン ===== */
+    main {
+      max-width: 600px;
+      margin: 40px auto;
+      background-color: #e9eef3;
+    }
+
+    label {
+      display: block;
+      font-size: 14px;
+      margin-bottom: 4px;
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 2px;
+      margin-bottom: 20px;
+      font-size: 14px;
+      box-sizing: border-box;
+      transition: border-color 0.3s;
+    }
+
+    select {
+      background-color: #d0d0d0;
+    }
+
+    /* ===== ボタンエリア ===== */
+    .button-area {
+      display: flex;
+      justify-content: space-between;
+      width: 60%;
+      margin: 30px auto;
+    }
+
+    .btn {
+      width: 120px;
+      padding: 10px 0;
+      border: none;
+      border-radius: 4px;
+      font-size: 14px;
+      color: #fff;
+      cursor: pointer;
+      box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+      transition: all 0.1s ease-in-out;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+    }
+
+    .btn:active {
+      transform: translateY(2px);
+      box-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+    }
+
+    .btn1 {
+      background-color: #b0b0b0;
+    }
+
+    .btn2 {
+      background-color: #1e63b0;
+    }
+
+    /* ===== フッター ===== */
+
+
+        footer.note {
+      text-align: center;
+      color: var(--muted);
+      font-size: 10px;
+      margin: 0px 0;
+      padding-bottom: 10px;
+      color: #8aaccd;
+     
+    }
+
+    .wrapper{
+    min-height: 100vh;
+    position: relative;/*←相対位置*/
+    padding-bottom: 120px;/*←footerの高さ*/
+    box-sizing: border-box;/*←全て含めてmin-height:100vhに*/
+}
+
+    /* ===== エラー表示 ===== */
+    .error {
+      border: 2px solid red !important;
+    }
+
+    .warning {
+      color: red;
+      font-weight: bold;
+      text-align: center;
+      margin-top: 10px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <img src="TOKYO1.png" alt="ロゴマーク" style="height:25px;">
+  </header>
+
+  <main>
+    <form id="myForm">
+      <label for="input1">主催者コード▼</label>
+      <input type="text" id="input1" placeholder="：XXXXX123">
+
+
+
+  <label for="input2">パスコード▼</label>
+      <input type="text" id="input2" placeholder="：XXXXXXXXX">
+
+
+
+      <div class="button-area">
+        <button type="button" class="btn btn1">キャンセル</button>
+        <button type="button" class="btn btn2" id="btnCheck">ログイン</button>
+      </div>
+
+
+    </form>
+  </main>
+
+
+    <footer class="note" role="contentinfo">
+    © TOKYOSYUKEN 2025
+  </footer>
+
+  <script>
+
+
+
+    // ボタン1（キャンセル）クリック時の処理
+document.querySelector(".btn1").addEventListener("click", () => {
+  window.location.href = "index.html"; // ← 遷移先を任意のURLに変更
+});
+
+
+    
+
+   
+  </script>
+
+</body>
+</html>
